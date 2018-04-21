@@ -4,28 +4,14 @@
         <meta charset="UTF-8">
         <title>Smart Parking System</title> 
         <script src="websocket_client.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 		<style>
 		rainbowParking {
-			display: block;
-			background-color: #dddddd;
 			padding: 30px;
 			font-size: 70px;
-			line-height: 60%;
-			margin-left:40px;
-			margin-right:40px;
-			border-style: groove;
 		}
-		
-		indigoParking {
-			display: block;
-			background-color: #dddddd;
-			padding: 30px;
-			font-size: 70px;
-			line-height: 60%;
-			margin-left:40px;
-			margin-right:40px;
-			border-style: groove;
-			}
 		div.container {
             margin: 15px;   
         }
@@ -34,59 +20,66 @@
             padding: 10px;    
         }
         div.left {
-            background-color:white;  
             width:900px;  
             height:500px;
         }
         div.right {
-            background-color: #dddddd; 
             width:360px;  
             height:400px;	
-            margin-top:20px;	
-            margin-bottom:100px;			  
+            margin-top:20px;				  
+        }
+        body { 
+          background: url(bg.jpg) no-repeat center center fixed; 
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
         }
         </style>
     </head>
     <body onload="javascript:init()">
-        <h2 style="color:green;text-align:center;font-size: 50px">Smart Parking System</h2>   
+        <div class="ui teal header" style="font-size:50px; position: relative; margin-left: 650px; margin-top: 15px;">
+        <i class="taxi icon"></i>
+        <div class="content">
+            Smart Parking System
+        </div>
+            </div>
 
-        <div class="container">
+        <div class="container" style="position: relative;margin-left: 150px; margin-top: 50px;">
             <div class="left">
-	          <h1 style="line-height: 30%; color:blue;margin-left:40px">Parking 1</h1>
-			  <h4 style="line-height: 10%; margin-left:40px">Bharti School</h4>
+	          <div style="color:blue;margin-left:250px;font-size: 50px;">Parking</div>
+			  <div style="margin-left:210px;font-size: 40px;">Bharti School</div>
 			  <rainbowParking id="rainbow">Receiving Data...</rainbowParking>
-			  <!-- <h1 style="line-height: 30%; color:white;margin-left:40px">1</h1>
-			  <h1 style="line-height: 30%; color:blue;margin-left:40px">Parking 2</h1>
-			  <h4 style="line-height: 10%; margin-left:40px">Jwalamukhi Hostel</h4>
-			  <indigoParking id="indigo">Receiving Data...</indigoParking> -->
 	        </div>
-            <div class="right">
-			 <div id="map" style="width:100%;height:100%">
+            </div>
+            
+			 
 			 
 			 </div>
 			</div>
-        <form>
-            <input type="text" name="name" id="name" placeholder="name" onkeyup="called()" />
-            <br>
-            <input type="text" name="vid" id="vid" placeholder="Registration Number" onkeyup="called()" />
-            <br>
-            <input type="submit" value="Book Slot" id="book" disabled="disabled" onclick="bookslot()">
-        </form>
-        </div>
-          
-			    
-        <div id = "websocketelements">
-        <div id="attributes_log"> </div>
-        </div>
-		
-		<div id="close">
-                <a href="javascript:onClose()">Close connection to Parking System</a>
-        </div>
+             <div class="ui grid container" style="position:relative; margin-top:-15px;">
+        <div class="seven wide column">
+        <div class="ui fluid card" style="height:275px;">
+          <div class="content">
+            <h4 class="ui dividing header"> <i class="taxi icon"></i> Book Parking Space</h4>
+          <form class="ui form">
+          <div class="field">
+            <label>Name</label>
+                <input name="name" id="name" placeholder="Name" onkeyup="called()" type="text">
+          </div>
+          <div class="field">
+            <label>Registration Number</label>
+                <input name="vid" id="vid" placeholder="Registration Number" onkeyup="called()" type="text">
+          </div>
+          <input type="submit" class="ui primary button" value="Book Slot" id="book" disabled="disabled" onclick="bookslot()">
 
-        <h4>Output Console</h4>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
 
-        <div id="output"></div> 
-		
+    <div id="map" style="height: 400px; width:500px; position: relative; left: -275px; top:-100px;" >
 		<script>
           function myMap(){
           if(navigator && navigator.geolocation) {
@@ -94,9 +87,6 @@
           } else {
             error('Geolocation is not supported.');
           }
-          //console.log(lat,long);
-          
-		
 		  }
         </script>
 

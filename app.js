@@ -3,7 +3,8 @@ var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-mongoose.connect('mongodb://vars:shubham07@ds253879.mlab.com:53879/smartparking');
+/*mongoose.connect('mongodb://vars:shubham07@ds253879.mlab.com:53879/smartparking');*/
+mongoose.connect('mongodb://localhost:27017/smartparking');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
@@ -61,7 +62,7 @@ app.post('/api/book',function(req,res){
 app.get('/api/getbooked',function(req,res){
 	Booking.find({flag: 0} , function(err,doc){
 					if(err) throw err;
-					console.log(doc.length);
+					//console.log(doc.length);
 					res.status(200);
 					res.json({"count1":doc.length});
 	})
